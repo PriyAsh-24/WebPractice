@@ -1,7 +1,8 @@
 var User=require("../models/userModel");
 var jwt=require("jsonwebtoken");
 var bcrypt=require("bcryptjs");
-const Project= require('../models/projectModel');
+
+const secret="$uperm@n";
 
 const handleSignUp=async (req,res)=>{
   const {username, name, email, password} = req.body;
@@ -47,7 +48,21 @@ const handleLogin=async (req, res) => {
     }
   }
 
+
+const getUserDetails=async (req,res)=>{
+    const {token}=req.body;
+    const data=jwt.verify(token,secret);
+    const user=await User.findOne({ _id:data.userId});
+  
+    if(user){
+      return res.json({success : true , message : "User Found" , user : user});
+    }else {
+      return res.json({success : false , message : "User not Found",});
+    }
+  }
+
 module.exports ={
     handleSignUp,
-    handleLogin
+    handleLogin,
+    getUserDetails,
 }
