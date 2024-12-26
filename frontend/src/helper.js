@@ -8,4 +8,4 @@ export const removeclass=(el,className) =>{
     elem.classList.remove(className);
 };
 
-export const api_base_url="http://localhost:3000/api";
+export const api_base_url="https://webpractice.onrender.com/api";
