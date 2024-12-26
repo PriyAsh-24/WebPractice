@@ -7,7 +7,7 @@ var cors=require("cors");
 
 var indexRouter = require('./routes/index');
 
-const PORT=process.env.Port;
+const PORT=process.env.PORT;
 
 var app = express();
 
